@@ -1,0 +1,216 @@
+/* Reset */
+body {
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('./assets/imgfundo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.25; /* Claro - imagem mais visível */
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+body.dark::before {
+  opacity: 0.18; /* 🔥 Bem mais escuro no dark */
+}
+
+/* Variáveis */
+:root {
+  --background: #f2f2f2;
+  --text: #121212;
+  --card: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.25);
+}
+
+body.dark {
+  --background: #121212;
+  --text: #f2f2f2;
+  --card: rgba(0, 0, 0, 0.9); /* 🔥 Preto quase sólido */
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Layout */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.glass {
+  backdrop-filter: blur(12px);
+  background: var(--card);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Profile */
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--text);
+  transition: transform 0.3s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+}
+
+h1 {
+  margin: 10px 0 5px;
+  font-size: 1.8rem;
+}
+
+p {
+  color: var(--text);
+  opacity: 0.7;
+  font-size: 0.95rem;
+}
+
+/* Social */
+.social-icons {
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons a {
+  color: var(--text);
+  font-size: 1.6rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+  color: #1db954;
+  transform: scale(1.2);
+}
+
+/* Toggle Theme */
+.theme-toggle {
+  margin-top: 12px;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 20px;
+  background: var(--text);
+  color: var(--background);
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* Spotify */
+.spotify-embed {
+  width: 90%;
+  max-width: 920px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 20px auto;
+  border: none; /* 🔥 Remove qualquer borda */
+  box-shadow: none; /* 🔥 Remove sombra, se tiver */
+}
+
+/* Além disso, garanta que o iframe dentro não tenha borda */
+.spotify-embed iframe {
+  border: none;
+}
+
+/* Galeria */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1/1.7;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  .social-icons {
+    gap: 12px;
+  }
+
+  .social-icons a {
+    font-size: 1.4rem;
+  }
+
+  .theme-toggle {
+    padding: 5px 12px;
+    font-size: 0.9rem;
+  }
+
+  .gallery {
+    gap: 6px;
+  }
+}
+
+/* 🔥 Fundo com imagem nos dois temas */
+body.light {
+  background-color: #f2f2f2;
+  /* Sem blend no claro, imagem aparece normal */
+}
+
+body.dark {
+  background-color: #121212;
+  background-blend-mode: overlay; /* Mantém imagem visível e escura */
+}
+
+.username {
+  color: var(--text);
+  opacity: 0.9;
+  font-weight: 600;
+  font-size: 1.1rem; /* 🔥 Aumenta o tamanho da fonte */
+  transition: color 0.3s, opacity 0.3s;
+  text-align: center;
+  display: block;
+  margin-top: 6px;
+}
+
+/* Responsivo no celular */
+@media (max-width: 600px) {
+  .username {
+    font-size: 1rem;
+  }
+}
+
